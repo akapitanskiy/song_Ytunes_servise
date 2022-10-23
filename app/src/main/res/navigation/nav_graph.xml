@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/startFragment"
+    >
+
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="uk.saltppay.android_developer_challenge_ntunfd.ui.start.StartFragment"
+        android:label="@string/start_title"
+        tools:layout="@layout/fragment_start"
+        />
+    <fragment
+        android:id="@+id/songListFragment"
+        android:name="uk.saltppay.android_developer_challenge_ntunfd.ui.songs.SongListFragment"
+        android:label="@string/song_list_title"
+        tools:layout="@layout/fragment_song_list"
+        />
+
+</navigation>

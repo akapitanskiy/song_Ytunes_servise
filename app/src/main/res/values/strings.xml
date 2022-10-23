@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">android-developer-challenge-ntunfd</string>
+
+    <string name="app_name">SaltPlay</string>
+
+    // Start fragment
+    <string name="start_title">Start fragment</string>
+    <string name="start_text">the new way</string>
+    <string name="start_text2">to feel music</string>
+    <string name="start_button_text">feel it</string>
+
+    // SongList fragment
+    <string name="song_list_title">SaltPlay</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>
