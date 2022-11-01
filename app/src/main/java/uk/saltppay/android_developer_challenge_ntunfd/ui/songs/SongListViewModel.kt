@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.schedulers.Schedulers
-import uk.saltppay.android_developer_challenge_ntunfd.data.network.model.Response
 import uk.saltppay.android_developer_challenge_ntunfd.data.network.model.SongModel
 import uk.saltppay.android_developer_challenge_ntunfd.data.repository.ISongsRepository
 import uk.saltppay.android_developer_challenge_ntunfd.ui.CommonViewModel
@@ -15,25 +14,19 @@ class SongListViewModel @Inject constructor(
 ) : CommonViewModel() {
 
     private val TAG = this::class.java.simpleName
-    private val songsLiveData = MutableLiveData<List<SongModel>?>()
+    private val songsLiveData = MutableLiveData<List<SongModel>>()
 
-    private fun getSongs() {
-        repository.getSongList()
+    private fun getAndObserveDb() {
+        repository.getSongsAndObserveDb()
             .subscribeOn(Schedulers.io())
             .subscribe(
-                this::onGetSongsSuccess
-            ) { Log.d(TAG, "getSongs: ${it.message}") }
+                songsLiveData::postValue
+            ) { Log.d(TAG, "getAndObserveDb: ${it.message}") }
             .also{ disposable.add(it) }
     }
 
-    private fun onGetSongsSuccess(response: Response) {
-        songsLiveData.postValue( response.feed?.entry )
-    }
-
-    fun getSongsLiveData(): LiveData<List<SongModel>?> {
-        if (songsLiveData.value == null) {
-            getSongs()
-        }
+    fun getSongsLiveData(): LiveData<List<SongModel>> {
+        getAndObserveDb()
         return songsLiveData
     }
 

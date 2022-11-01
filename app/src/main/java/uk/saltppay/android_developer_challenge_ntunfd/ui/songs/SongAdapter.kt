@@ -14,12 +14,14 @@ class SongAdapter : ListAdapter<SongModel, SongAdapter.SongItem>(DIFF_CALLBACK) 
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<SongModel>() {
 
             override fun areItemsTheSame(oldSong: SongModel, newSong: SongModel): Boolean {
-                return oldSong.songName?.label == newSong.songName?.label
+                return oldSong.itunesId?.label == newSong.itunesId?.label
+                    && oldSong.dbId            == newSong.dbId
             }
-
             override fun areContentsTheSame(oldSong: SongModel, newSong: SongModel): Boolean {
                 return oldSong.itemCount?.label == newSong.itemCount?.label
                     && oldSong.rights?.label    == newSong.rights?.label
+                    && oldSong.songName?.label  == newSong.songName?.label
+                    && oldSong.title?.label     == newSong.title?.label
             }
         }
     }

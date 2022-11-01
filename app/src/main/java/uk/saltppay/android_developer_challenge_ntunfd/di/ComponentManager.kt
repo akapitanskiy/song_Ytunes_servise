@@ -1,5 +1,6 @@
 package uk.saltppay.android_developer_challenge_ntunfd.di
 
+import android.content.Context
 import uk.saltppay.android_developer_challenge_ntunfd.di.component.AppComponent
 import uk.saltppay.android_developer_challenge_ntunfd.di.component.DaggerAppComponent
 import uk.saltppay.android_developer_challenge_ntunfd.di.component.ViewModelComponent
@@ -10,10 +11,10 @@ object ComponentManager {
     private lateinit var appComponent: AppComponent
     private var viewModelComponent: ViewModelComponent? = null
 
-    fun initAppComponent() {
+    fun initAppComponent(context: Context) {
         appComponent = DaggerAppComponent
             .builder()
-            .appModuleProvider( AppModuleProvider() )
+            .appModuleProvider( AppModuleProvider(context) )
             .build()
     }
 
